@@ -35,14 +35,14 @@ const Login = () => {
 
     return (
         <div className="flex flex-col lg:flex-row lg:my-10 w-full justify-center">
-            <div className="bg-blue-600 text-center text-white p-10 w-full lg:w-1/3 mx-auto lg:ml-10 md:mx-0 space-y-3 md:space-y-5">
+            <div className="flex flex-col justify-center bg-blue-600 text-center text-white p-10 w-full lg:w-1/3 mx-auto lg:ml-10 md:mx-0 space-y-3 md:space-y-5">
                 <h2 className="font-bold text-xl md:text-3xl">Register To Login</h2>
-                <p>If you do not have any account First you need to register and then try again</p>
-                <Link to="/register" className=" btn btn-primary">
+                <p className="">If you do not have any account First you need to register and then try again</p>
+                <Link to="/register" className="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     Register Now
                 </Link >
             </div>
-            <form onSubmit={handleLogin} className="w-full lg:w-2/3 bg-base-200 lg:mr-10 p-10">
+            <form onSubmit={handleLogin} className="w-full lg:w-2/3 bg-gray-100 lg:mr-10 p-10">
                 <h2 className="text-center font-bold text-xl md:text-3xl">Log in with</h2>
                 <div className="mb-5 max-w-sm mx-auto">
                     <button onClick={handleLoginWithGoogle} className="flex items-center gap-3 bg-white dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 rounded-lg hover:bg-gray-100 duration-300 transition-colors border px-8 py-2.5 my-4">
@@ -56,11 +56,11 @@ const Login = () => {
                     </button>
                 </div>
                 <div className="mb-5 max-w-sm mx-auto">
-                    --------------------Or--------------------
+                    -------------------Or--------------------
                 </div>
                 <div className="mb-5 max-w-sm mx-auto">
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                    <input type="email" name="email"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+                    <input type="email" name="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
                 </div>
                 <div className="mb-5 max-w-sm mx-auto">
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
