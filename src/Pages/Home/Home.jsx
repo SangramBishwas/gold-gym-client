@@ -1,3 +1,4 @@
+import About from "./About";
 import Feature from "./Feature";
 import Slider from "./Slider";
 
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
             <Slider></Slider>
             <Feature></Feature>
+            <About></About>
             this is homepages
         </div>
     );
