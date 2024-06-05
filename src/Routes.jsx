@@ -3,7 +3,7 @@ import {
 } from "react-router-dom";
 import Root from "./Root";
 import Home from "./Pages/Home/Home";
-import AllTrainer from "./Pages/Home/All Trainer/AllTrainer";
+import AllTrainer from "./Pages/All Trainer/AllTrainer";
 import AllClasses from "./Pages/All Classes/AllClasses";
 import Forum from "./Pages/Forum/Forum";
 import Login from "./Pages/Login/Login";
