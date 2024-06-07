@@ -6,9 +6,9 @@ import { Card } from "flowbite-react";
 const FeaturedClass = () => {
     const axiosPublic = useAxiosPublic();
     const { data: featuredClasses = [] } = useQuery({
-        queryKey: ['feturedClasses'],
+        queryKey: ['featuredClasses'],
         queryFn: async () => {
-            const res = await axiosPublic('/featured&classes');
+            const res = await axiosPublic.get('/featured&classes');
             return res.data
         }
     })
