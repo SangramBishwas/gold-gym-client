@@ -9,10 +9,10 @@ const Nav = () => {
             .catch()
     }
     const links = <>
-        <li onClick="reload()"><NavLink className={({ isActive }) => isActive ? "font-bold md:text-base text-lime-600" : "md:text-base font-semibold"} to="/">Home</NavLink></li>
-        <li onClick="reload()"><NavLink className={({ isActive }) => isActive ? "font-bold md:text-base text-lime-600" : "md:text-base font-semibold"} to="/all&trainer">All Trainer</NavLink></li>
-        <li onClick="reload()"><NavLink className={({ isActive }) => isActive ? "font-bold md:text-base text-lime-600" : "md:text-base font-semibold"} to="/all&classes">All Classes</NavLink></li>
-        <li onClick="reload()"><NavLink className={({ isActive }) => isActive ? "font-bold md:text-base text-lime-600" : "md:text-base font-semibold"} to="/forum">Forum</NavLink></li>
+        <li onClick="reload()"><NavLink className={({ isActive }) => isActive ? "font-bold md:text-base text-lime-400" : "md:text-base font-semibold"} to="/">Home</NavLink></li>
+        <li onClick="reload()"><NavLink className={({ isActive }) => isActive ? "font-bold md:text-base text-lime-400" : "md:text-base font-semibold"} to="/all&trainer">All Trainer</NavLink></li>
+        <li onClick="reload()"><NavLink className={({ isActive }) => isActive ? "font-bold md:text-base text-lime-400" : "md:text-base font-semibold"} to="/all&classes">All Classes</NavLink></li>
+        <li onClick="reload()"><NavLink className={({ isActive }) => isActive ? "font-bold md:text-base text-lime-400" : "md:text-base font-semibold"} to="/forum">Forum</NavLink></li>
     </>
     return (
         <Navbar className="bg-slate-700 dark:bg-slate-400 text-white" fluid>
