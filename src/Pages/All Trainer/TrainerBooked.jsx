@@ -2,30 +2,33 @@ import { useLocation } from "react-router-dom";
 import SectionTitle from "../../SectionTitle/SectionTitle";
 import { Button, Card, Modal } from "flowbite-react";
 import { useState } from "react";
+import useAuth from "../../Hooks/useAuth";
 
 const TrainerBooked = () => {
+    const { user } = useAuth()
     const [openModal, setOpenModal] = useState(false);
-    // const [payement, setPayment] = useState(0);
+    const [Package, setPackage] = useState('')
+    const [payment, setPayment] = useState(0);
     const location = useLocation();
     const trainer = location.state;
-    console.log(trainer)
 
-    const hadleJoinNow = (p) => {
-        console.log(p);
+    const hadleJoinNow = (p1, p2) => {
         setOpenModal(true);
-        // setPayment(p);
+        setPackage(p1)
+        setPayment(p2);
     }
+    
     return (
         <div>
             <SectionTitle heading={'Booked Your Trainer'}></SectionTitle>
             <div className="grid grid-cols-1 my-5 md:my-10 md:grid-cols-2 lg:grid-cols-3 px-5 md:px-10 lg:px-20 gap-8 lg:gap-16">
                 <Card className='max-w-sm'>
-                    <h5 className="text-xl font-medium text-gray-500 dark:text-gray-400">Basic</h5>
+                    <h5 className="text-xl font-medium text-gray-500 dark:text-gray-400">Basic with</h5>
                     <div className="flex items-center justify-between">
                         <h3 className="text-xl font-semibold">{trainer.name}</h3>
                         <p>your slot: {trainer.selectedSlot}</p>
                     </div>
-                    <div className="flex gap-2"><span className="font-semibold">Class Day:</span> {trainer.classes}</div>
+                    <div className="flex gap-2"><span className="font-semibold">Class Day: </span>{trainer.classes}</div>
                     <div className="flex items-baseline text-gray-800 dark:text-white">
                         <span className="text-3xl font-semibold">$</span>
                         <span className="text-5xl font-extrabold tracking-tight">20</span>
@@ -84,7 +87,7 @@ const TrainerBooked = () => {
                                 showers.</span>
                         </li>
                     </ul>
-                    <button onClick={() => hadleJoinNow(20)}
+                    <button onClick={() => hadleJoinNow('Basic', 20)}
                         type="button"
                         className="inline-flex w-full justify-center rounded-lg bg-cyan-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-200 dark:focus:ring-cyan-900"
                     >
@@ -92,7 +95,7 @@ const TrainerBooked = () => {
                     </button>
                 </Card>
                 <Card className='max-w-sm'>
-                    <h5 className="text-xl font-medium text-gray-500 dark:text-gray-400">Standard</h5>
+                    <h5 className="text-xl font-medium text-gray-500 dark:text-gray-400">Standard with</h5>
                     <div className="flex items-center justify-between">
                         <h3 className="text-xl font-semibold">{trainer.name}</h3>
                         <p>your slot: {trainer.selectedSlot}</p>
@@ -157,7 +160,7 @@ const TrainerBooked = () => {
                             </span>
                         </li>
                     </ul>
-                    <button onClick={() => hadleJoinNow(50)}
+                    <button onClick={() => hadleJoinNow('Standard', 50)}
                         type="button"
                         className="inline-flex w-full justify-center rounded-lg bg-cyan-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-200 dark:focus:ring-cyan-900"
                     >
@@ -165,7 +168,7 @@ const TrainerBooked = () => {
                     </button>
                 </Card>
                 <Card className='max-w-sm'>
-                    <h5 className="text-xl font-medium text-gray-500 dark:text-gray-400">Premium</h5>
+                    <h5 className="text-xl font-medium text-gray-500 dark:text-gray-400">Premium with</h5>
                     <div className="flex items-center justify-between">
                         <h3 className="text-xl font-semibold">{trainer.name}</h3>
                         <p>your slot: {trainer.selectedSlot}</p>
@@ -232,7 +235,7 @@ const TrainerBooked = () => {
                             </span>
                         </li>
                     </ul>
-                    <button onClick={() => hadleJoinNow(100)}
+                    <button onClick={() => hadleJoinNow('Premium', 100)}
                         type="button"
                         className="inline-flex w-full justify-center rounded-lg bg-cyan-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-200 dark:focus:ring-cyan-900">
                         Join Now
@@ -240,18 +243,21 @@ const TrainerBooked = () => {
                 </Card>
             </div>
             <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                <Modal.Header>Terms of Service</Modal.Header>
+                <Modal.Header><h3 className="text-center text-xl md:text-2xl font-bold">Your Order Details</h3></Modal.Header>
                 <Modal.Body>
                     <div className="space-y-6">
-                        <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                            With less than a month to go before the European Union enacts new consumer privacy laws for its citizens,
-                            companies around the world are updating their terms of service agreements to comply.
-                        </p>
-                        <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                            The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant
-                            to ensure a common set of data rights in the European Union. It requires organizations to notify users as
-                            soon as possible of high-risk data breaches that could personally affect them.
-                        </p>
+                        <div className="flex flex-col md:flex-row justify-around">
+                            <div className="flex"><h5>Price: {payment}$</h5></div>
+                            <div className="flex">Slot: from {trainer.selectedSlot}</div>
+                        </div>
+                        <div className="flex flex-col md:flex-row justify-around">
+                            <div className="flex"><h5>Package: {Package}</h5></div>
+                            <div className="flex">Trainer Name: {trainer.name}</div>
+                        </div>
+                        <div className="flex flex-col md:flex-row justify-around">
+                            <div className="flex"><h5>Your Name: {user?.displayName}</h5></div>
+                            <div className="flex">Email: {user?.email}</div>
+                        </div>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>

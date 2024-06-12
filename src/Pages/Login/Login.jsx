@@ -1,11 +1,15 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const { userLogin, googleLogin } = useAuth();
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
     const location = useLocation();
+    const from = location.state?.from.pathname || '/'
     const handleLogin = (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
@@ -25,11 +29,30 @@ const Login = () => {
     }
     const handleLoginWithGoogle = () => {
         googleLogin()
-            .then(() => {
-                // console.log(result.user);
-                toast.success('Logged in successfully')
-                navigate(location?.state ? location.state : "/");
-            })
+        .then(result => {
+            const user = result.user;
+            const userInfo = {
+                name: user?.displayName,
+                email: user?.email,
+                image: user?.photoURL
+            }
+            axiosPublic.post('/users', userInfo)
+                .then(res => {
+                    const result = res.data;
+                    console.log(result)
+                    if (result.insertedId) {
+                        console.log('User created successfully');
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "User created successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate(from, { replace: true })
+                    }
+                })
+        })
             .catch(error => console.log(error))
     }
 
