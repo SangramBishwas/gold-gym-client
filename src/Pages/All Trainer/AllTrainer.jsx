@@ -1,5 +1,5 @@
 import { Button, Card } from "flowbite-react";
-import SectionTitle from "../../SectionTitle/SectionTitle";
+import SectionTitle from "../../Shared/SectionTitle";
 import useTrainers from "../../Hooks/useTrainers";
 import { Link } from "react-router-dom";
 

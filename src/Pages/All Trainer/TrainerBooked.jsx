@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import SectionTitle from "../../SectionTitle/SectionTitle";
+import SectionTitle from "../../Shared/SectionTitle";
 import { Button, Card, Modal } from "flowbite-react";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";

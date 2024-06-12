@@ -88,7 +88,7 @@ const CheckOut = ({ paymentInfo }) => {
                             Swal.fire({
                                 position: "center",
                                 icon: "success",
-                                title: `Congratulations! you have confirmed ${pacckage} membership`,
+                                title: `Congratulations! you have confirmed ${pacckage} membership  `,
                                 showConfirmButton: false,
                                 timer: 1500
                             });
@@ -121,9 +121,9 @@ const CheckOut = ({ paymentInfo }) => {
             <Button className='mx-auto w-1/2 md:w-1/3' type="submit" disabled={!stripe || !clientSecret}>
                 Confirm Your Payment
             </Button>
-            <p className="text-red-700 py-2">{error}</p>
+            <p className="text-red-700 py-2 text-center">{error}</p>
             {transaction &&
-                <p className="text-green-700 py-2">Your transaction id: {transaction}</p>
+                <p className="text-green-700 py-2 text-center">Your transaction id: {transaction}</p>
             }
         </form>
     );

@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import SectionTitle from "../../SectionTitle/SectionTitle";
+import SectionTitle from "../../Shared/SectionTitle";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckOut from "./CheckOut";

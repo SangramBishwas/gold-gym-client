@@ -1,5 +1,5 @@
 import { Card } from "flowbite-react";
-import SectionTitle from "../../SectionTitle/SectionTitle";
+import SectionTitle from "../../Shared/SectionTitle";
 import trainer1 from "../../assets/trainer-01.jpg"
 import trainer2 from "../../assets/trainer-02.jpg"
 import trainer3 from "../../assets/trainer-03.jpg"

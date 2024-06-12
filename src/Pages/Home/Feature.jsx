@@ -1,4 +1,4 @@
-import SectionTitle from "../../SectionTitle/SectionTitle";
+import SectionTitle from "../../Shared/SectionTitle";
 import { Card } from "flowbite-react";
 import image from "../../assets/sliders-3.jpg";
 const Feature = () => {

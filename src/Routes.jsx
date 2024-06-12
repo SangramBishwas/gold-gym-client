@@ -11,6 +11,7 @@ import Register from "./Pages/Register/Register";
 import Details from "./Pages/All Trainer/Details";
 import TrainerBooked from "./Pages/All Trainer/TrainerBooked";
 import Payment from "./Pages/Payment/Payment";
+import BeTrainer from "./Pages/All Trainer/BeTrainer";
 
 export const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
             {
                 path: '/trainers/:id',
                 element: <Details></Details>
+            },
+            {
+                path: '/be&trainer',
+                element: <BeTrainer></BeTrainer>
             },
             {
                 path: '/booked&trainer',

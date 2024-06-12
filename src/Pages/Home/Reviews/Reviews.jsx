@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import SectionTitle from "../../../SectionTitle/SectionTitle";
+import SectionTitle from "../../../Shared/SectionTitle";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
