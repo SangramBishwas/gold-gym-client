@@ -10,6 +10,7 @@ import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import Details from "./Pages/All Trainer/Details";
 import TrainerBooked from "./Pages/All Trainer/TrainerBooked";
+import Payment from "./Pages/Payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/payment',
+                element: <Payment></Payment>
             },
         ]
     },

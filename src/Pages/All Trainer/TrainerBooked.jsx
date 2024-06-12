@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SectionTitle from "../../SectionTitle/SectionTitle";
 import { Button, Card, Modal } from "flowbite-react";
 import { useState } from "react";
@@ -10,14 +10,14 @@ const TrainerBooked = () => {
     const [Package, setPackage] = useState('')
     const [payment, setPayment] = useState(0);
     const location = useLocation();
-    const trainer = location.state;
+    const boookingInfo = location.state;
 
     const hadleJoinNow = (p1, p2) => {
         setOpenModal(true);
         setPackage(p1)
         setPayment(p2);
     }
-    
+
     return (
         <div>
             <SectionTitle heading={'Booked Your Trainer'}></SectionTitle>
@@ -25,10 +25,10 @@ const TrainerBooked = () => {
                 <Card className='max-w-sm'>
                     <h5 className="text-xl font-medium text-gray-500 dark:text-gray-400">Basic with</h5>
                     <div className="flex items-center justify-between">
-                        <h3 className="text-xl font-semibold">{trainer.name}</h3>
-                        <p>your slot: {trainer.selectedSlot}</p>
+                        <h3 className="text-xl font-semibold">{boookingInfo.name}</h3>
+                        <p>your slot: {boookingInfo.selectedSlot}</p>
                     </div>
-                    <div className="flex gap-2"><span className="font-semibold">Class Day: </span>{trainer.classes}</div>
+                    <div className="flex gap-2"><span className="font-semibold">Class Day: </span>{boookingInfo.classes}</div>
                     <div className="flex items-baseline text-gray-800 dark:text-white">
                         <span className="text-3xl font-semibold">$</span>
                         <span className="text-5xl font-extrabold tracking-tight">20</span>
@@ -97,10 +97,10 @@ const TrainerBooked = () => {
                 <Card className='max-w-sm'>
                     <h5 className="text-xl font-medium text-gray-500 dark:text-gray-400">Standard with</h5>
                     <div className="flex items-center justify-between">
-                        <h3 className="text-xl font-semibold">{trainer.name}</h3>
-                        <p>your slot: {trainer.selectedSlot}</p>
+                        <h3 className="text-xl font-semibold">{boookingInfo.name}</h3>
+                        <p>your slot: {boookingInfo.selectedSlot}</p>
                     </div>
-                    <div className="flex gap-2"><span className="font-semibold">Class Day:</span> {trainer.classes}</div>
+                    <div className="flex gap-2"><span className="font-semibold">Class Day:</span> {boookingInfo.classes}</div>
                     <div className="flex items-baseline text-gray-900 dark:text-white">
                         <span className="text-3xl font-semibold">$</span>
                         <span className="text-5xl font-extrabold tracking-tight">50</span>
@@ -170,10 +170,10 @@ const TrainerBooked = () => {
                 <Card className='max-w-sm'>
                     <h5 className="text-xl font-medium text-gray-500 dark:text-gray-400">Premium with</h5>
                     <div className="flex items-center justify-between">
-                        <h3 className="text-xl font-semibold">{trainer.name}</h3>
-                        <p>your slot: {trainer.selectedSlot}</p>
+                        <h3 className="text-xl font-semibold">{boookingInfo.name}</h3>
+                        <p>your slot: {boookingInfo.selectedSlot}</p>
                     </div>
-                    <div className="flex gap-2"><span className="font-semibold">Class Day:</span> {trainer.classes}</div>
+                    <div className="flex gap-2"><span className="font-semibold">Class Day:</span> {boookingInfo.classes}</div>
                     <div className="flex items-baseline text-gray-900 dark:text-white">
                         <span className="text-3xl font-semibold">$</span>
                         <span className="text-5xl font-extrabold tracking-tight">100</span>
@@ -248,11 +248,11 @@ const TrainerBooked = () => {
                     <div className="space-y-6">
                         <div className="flex flex-col md:flex-row justify-around">
                             <div className="flex"><h5>Price: {payment}$</h5></div>
-                            <div className="flex">Slot: from {trainer.selectedSlot}</div>
+                            <div className="flex">Slot: from {boookingInfo.selectedSlot}</div>
                         </div>
                         <div className="flex flex-col md:flex-row justify-around">
                             <div className="flex"><h5>Package: {Package}</h5></div>
-                            <div className="flex">Trainer Name: {trainer.name}</div>
+                            <div className="flex">Trainer Name: {boookingInfo.name}</div>
                         </div>
                         <div className="flex flex-col md:flex-row justify-around">
                             <div className="flex"><h5>Your Name: {user?.displayName}</h5></div>
@@ -261,7 +261,9 @@ const TrainerBooked = () => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className="mx-auto w-1/2" onClick={() => setOpenModal(false)}>Confirm</Button>
+                    <Link className="w-full" to="/payment" state={{boookingInfo, payment: payment, pacckage: Package}}>
+                        <Button className="mx-auto w-1/2" onClick={() => setOpenModal(false)}>Proceed to pay</Button>
+                    </Link>
                 </Modal.Footer>
             </Modal>
         </div>
