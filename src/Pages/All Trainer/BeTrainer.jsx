@@ -1,4 +1,4 @@
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 import { FileInput, Label } from "flowbite-react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import SectionTitle from "../../Shared/SectionTitle";
@@ -40,13 +40,7 @@ const BeTrainer = () => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const photo = form.get('image');
-        const name = form.get('name');
-        const email = user.email;
-        const available_days =  selectedDays;
-        const available_times = selectedTimes;
-        console.log(name, email, available_days, available_times)
-
-        const imageFile ={image: photo};
+        const imageFile = { image: photo };
         const res = await axiosPublic.post(imageHostingAPI, imageFile, {
             headers: {
                 "content-type": "multipart/form-data"
@@ -56,26 +50,29 @@ const BeTrainer = () => {
         const resData = res.data;
         console.log(resData)
 
-        // if (res.data.success) {
-        //     const menuItem = {
-        //         name: data.name,
-        //         recipe: data.recipe,
-        //         image: resData.data.display_url,
-        //         category: data.category,
-        //         price: parseFloat(data.price)
-        //     }
-        //     const menuRes = await axiosPublic.post('/menu', menuItem);
-        //     console.log(menuRes.data)
-        //     if (menuRes.data.insertedId) {
-        //         Swal.fire({
-        //             position: "center",
-        //             icon: "success",
-        //             title: `${data.name} has been added successfully`,
-        //             showConfirmButton: false,
-        //             timer: 2500
-        //         });
-        //     }
-        // }
+        if (res.data.success) {
+            const request = {
+                name: form.get('name'),
+                email: user.email,
+                image: resData.data.display_url,
+                skills: [form.get('skills')],
+                description: form.get('description'),
+                available_days: selectedDays,
+                available_times: selectedTimes,
+            }
+            console.log(request);
+            const res = await axiosPublic.post('/requests', request);
+            console.log(res.data)
+            if (res.data.insertedId) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: `Your request has been sent`,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+        }
     }
     return (
         <div className="px-10 md:px-20 lg:px-36">
@@ -101,7 +98,7 @@ const BeTrainer = () => {
                             <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Your Age</label>
                         </div>
                         <div className="relative z-0 w-full group">
-                            <input type="text" name="skils" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <input type="text" name="skills" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                             <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Skills</label>
                         </div>
                     </div>
@@ -137,7 +134,7 @@ const BeTrainer = () => {
                         <FileInput name="image" id="large-file-upload" sizing="lg" />
                     </div>
 
-                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send Request</button>
+                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-10">Send Request</button>
                 </form>
             </div >
         </div >
