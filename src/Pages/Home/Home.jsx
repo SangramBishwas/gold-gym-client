@@ -1,6 +1,7 @@
 import About from "./About";
 import Feature from "./Feature";
 import FeaturedClass from "./Featured Class/FeaturedClass";
+import NewsLetter from "./NewsLetter";
 import Posts from "./Posts";
 import Reviews from "./Reviews/Reviews";
 import Slider from "./Slider";
@@ -14,8 +15,9 @@ const Home = () => {
             <About></About>
             <FeaturedClass></FeaturedClass>
             <Reviews></Reviews>
-            <Team></Team>
             <Posts></Posts>
+            <NewsLetter></NewsLetter>
+            <Team></Team>
             this is homepages
         </div>
     );

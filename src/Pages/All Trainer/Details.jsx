@@ -38,18 +38,23 @@ const Details = () => {
                         <h4 className="font-semibold">Email: {trainer.email}</h4>
                         <h4 className="font-semibold">Age: {trainer.age}</h4>
                     </div>
-                    <div className="flex flex-col items-center lg:flex-row justify-between border-b-2 space-y-3 pb-3">
-                        <h2 className="font-bold text-xl">Skills</h2>
-                        <span className="flex items-center"><IoCloudDone className="text-xl" />{trainer?.skills?.[0]}</span>
-                        <span className="flex items-center"><IoCloudDone className="text-xl" />{trainer?.skills?.[1]}</span>
-                        <span className="flex items-center"><IoCloudDone className="text-xl" />{trainer?.skills?.[2]}</span>
+                    {
+                        trainer?.skills?.map((skill, index) => <div key={index} className="flex flex-col items-center lg:flex-row justify-between border-b-2 space-y-3 pb-3">
+                            <h2 className="font-bold text-xl">Skills</h2>
+                            <div className="">
+                                <span key={index} className="flex items-center text-lg"><IoCloudDone className="text-xl" />{skill}</span>
+                            </div>
+                        </div>)
+                    }
+                    <div>
+                        <h2 className="font-bold text-xl text-center pb-2 md:text-left">Select A Slot</h2>
+                        <div className="flex flex-col items-center lg:flex-row justify-between border-b-2 py-3 space-y-4 md:space-y-0">
+                            {
+                                slots?.map((slot, index) => <Button key={index} onClick={() => handleSelectSlot(slot)}>{slot}</Button>)
+                            }
+                        </div>
                     </div>
-                    <h2 className="font-bold text-xl">Select A Slot</h2>
-                    <div className="flex flex-col items-center lg:flex-row justify-between border-b-2 space-y-3 pb-3">
-                        {
-                            slots?.map((slot, index) => <Button key={index} onClick={() => handleSelectSlot(slot)}>{slot}</Button>)
-                        }
-                    </div>
+
                     {selectedSlot &&
                         <Link to='/booked&trainer' state={{
                             name: `${trainer.name}`,
