@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { FileInput, Label } from "flowbite-react";
+import { FileInput, Label, TextInput } from "flowbite-react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import SectionTitle from "../../Shared/SectionTitle";
 import useAuth from "../../Hooks/useAuth";
@@ -59,9 +59,10 @@ const BeTrainer = () => {
                 age: form.get('age'),
                 image: resData.data.display_url,
                 skills: [form.get('skills')],
-                description: form.get('description'),
                 available_days: selectedDays,
                 available_times: selectedTimes,
+                exprience: form.get('exprience'),
+                description: form.get('description'),
             }
             console.log(request);
             const res = await axiosPublic.post('/requests', request);
@@ -76,7 +77,7 @@ const BeTrainer = () => {
                 });
                 // navigate('/')
             }
-            
+
         }
     }
     return (
@@ -108,7 +109,7 @@ const BeTrainer = () => {
                         </div>
                     </div>
                     <div className="grid md:grid-cols-2 md:gap-6">
-                        <div className="relative z-0 w-full mb-5 group">
+                        <div className="relative z-10 w-full mb-5 group">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Available Days</label>
                             <Select
                                 onChange={handleSelectedDays}
@@ -117,7 +118,7 @@ const BeTrainer = () => {
                                 options={Days}
                                 classNamePrefix="select" required />
                         </div>
-                        <div className="relative z-0 w-full mb-5 group">
+                        <div className="relative z-10 w-full mb-5 group">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Available Times(any 3 times)</label>
                             <Select
                                 onChange={handleSelectedTimes}
@@ -127,17 +128,26 @@ const BeTrainer = () => {
                                 classNamePrefix="select" required />
                         </div>
                     </div>
+                    <div className="grid md:grid-cols-2 md:gap-6 mb-5">
+                        <div className="w-full">
+                            <div className="mb-2 block">
+                                <Label htmlFor="base" value="Exprience" />
+                            </div>
+                            <TextInput id="base" type="number" name="exprience" sizing="md" />
+                        </div>
+                        <div className="w-full space-y-1">
+                            <div>
+                                <Label htmlFor="large-file-upload" value="Large file input" />
+                            </div>
+                            <FileInput name="image" id="large-file-upload" sizing="lg" required/>
+                        </div>
+                    </div>
 
                     <div className="mb-5 w-full">
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bio Data</label>
                         <input type="text" name="description" id="large-input" className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                     </div>
-                    <div className="mb-5 w-full">
-                        <div>
-                            <Label htmlFor="large-file-upload" value="Large file input" />
-                        </div>
-                        <FileInput name="image" id="large-file-upload" sizing="lg" />
-                    </div>
+
 
                     <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-10">Send Request</button>
                 </form>

@@ -20,7 +20,7 @@ const AllTrainer = () => {
                         </div>
                         <div className="flex justify-between text-gray-700 dark:text-gray-400">
                             <span>Years of Exprience: </span>
-                            {trainer.exprience}
+                            {trainer.exprience}years
                         </div>
                         <div className="flex justify-between text-gray-700 dark:text-gray-400">
                             <span>Available slots: </span>
