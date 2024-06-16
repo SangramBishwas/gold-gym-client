@@ -36,12 +36,12 @@ const Login = () => {
                 email: user?.email,
                 image: user?.photoURL
             }
+            
             axiosPublic.post('/users', userInfo)
                 .then(res => {
                     const result = res.data;
                     console.log(result)
                     if (result.insertedId) {
-                        console.log('User created successfully');
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
@@ -49,9 +49,10 @@ const Login = () => {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        navigate(from, { replace: true })
+                        
                     }
                 })
+                navigate(from, { replace: true })
         })
             .catch(error => console.log(error))
     }

@@ -5,13 +5,15 @@ import SectionTitle from "../../Shared/SectionTitle";
 import useAuth from "../../Hooks/useAuth";
 import Select from 'react-select'
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const image_hosting_key = import.meta.env.VITE_img_hosting_key;
 const imageHostingAPI = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const BeTrainer = () => {
     const { user } = useAuth();
-    const [selectedDays, setSelectedDays] = useState([])
-    const [selectedTimes, setSelectedTimes] = useState([])
+    const [selectedDays, setSelectedDays] = useState([]);
+    const [selectedTimes, setSelectedTimes] = useState([]);
+    // const navigate = useNavigate()
     const axiosPublic = useAxiosPublic();
     const Days = [
         { value: 'Sunday', label: 'Sunday' },
@@ -54,6 +56,7 @@ const BeTrainer = () => {
             const request = {
                 name: form.get('name'),
                 email: user.email,
+                age: form.get('age'),
                 image: resData.data.display_url,
                 skills: [form.get('skills')],
                 description: form.get('description'),
@@ -71,7 +74,9 @@ const BeTrainer = () => {
                     showConfirmButton: false,
                     timer: 2500
                 });
+                // navigate('/')
             }
+            
         }
     }
     return (

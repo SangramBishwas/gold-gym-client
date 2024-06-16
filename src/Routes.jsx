@@ -15,6 +15,7 @@ import BeTrainer from "./Pages/All Trainer/BeTrainer";
 import Dashboard from "./Dashboard/Dashboard";
 import AllSubscribers from "./Dashboard/Admn/AllSubscribers";
 import AllTrainers from "./Dashboard/Admn/AllTrainers";
+import AppliedTrainers from "./Dashboard/Admn/AppliedTrainers";
 
 export const router = createBrowserRouter([
     {
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/trainers',
                 element: <AllTrainers></AllTrainers>
+            },
+            {
+                path: '/dashboard/requests',
+                element: <AppliedTrainers></AppliedTrainers>
             },
         ]
         
