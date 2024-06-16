@@ -36,7 +36,7 @@ const Dashboard = () => {
                     </Sidebar.ItemGroup>
                 </Sidebar.Items>
             </Sidebar>
-            <div className="w-4/5">
+            <div className="lg:w-4/5">
                 <Outlet />
             </div>
         </div>
