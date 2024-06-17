@@ -16,6 +16,7 @@ import Dashboard from "./Dashboard/Dashboard";
 import AllSubscribers from "./Dashboard/Admn/AllSubscribers";
 import AllTrainers from "./Dashboard/Admn/AllTrainers";
 import AppliedTrainers from "./Dashboard/Admn/AppliedTrainers";
+import Balance from "./Dashboard/Admn/Balance";
 
 export const router = createBrowserRouter([
     {
@@ -79,6 +80,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/requests',
                 element: <AppliedTrainers></AppliedTrainers>
+            },
+            {
+                path: '/dashboard/balance',
+                element: <Balance></Balance>
             },
         ]
         
