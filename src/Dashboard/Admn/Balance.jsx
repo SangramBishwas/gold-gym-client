@@ -3,8 +3,11 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import DashboardTitle from "../DashboardTitle";
 import { Button, Modal, Table } from "flowbite-react";
 import { useState } from "react";
+import { BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
+import useSubscriber from "../../Hooks/useSubscriber";
 const Balance = () => {
     const axiosPublic = useAxiosPublic();
+    const [subscribers] = useSubscriber()
     const [openModal, setOpenModal] = useState(false);
     const { data: payments = [] } = useQuery({
         queryKey: ['payments'],
@@ -15,6 +18,33 @@ const Balance = () => {
     })
     const totalPrice = payments.reduce((total, item) => total + item.price, 0);
     console.log(totalPrice);
+    const data = [
+        {
+            name: 'Subscribers',
+            numbers: subscribers.length
+        },
+        {
+            name: 'Member',
+            numbers: payments.length
+        }
+    ]
+
+    const getPath = (x, y, width, height) => (
+        `M${x},${y + height}
+         C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3} ${x + width / 2}, ${y}
+         C${x + width / 2},${y + height / 3} ${x + 2 * width / 3},${y + height} ${x + width}, ${y + height}
+         Z`
+    );
+
+    const TriangleBar = (props) => {
+        const {
+            // eslint-disable-next-line react/prop-types
+            fill, x, y, width, height,
+        } = props;
+
+        return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
+    };
+
     return (
         <div>
             <DashboardTitle heading={`Remaining Balance: ${totalPrice}$`}></DashboardTitle>
@@ -76,6 +106,17 @@ const Balance = () => {
             </div>
             <div className="my-10">
                 <DashboardTitle heading={'Subscribers VS Members'}></DashboardTitle>
+
+                <div className="flex lg:justify-center">
+                        <BarChart className="w-full h-full" width={1080} height={480} data={data}>
+                            <Tooltip />
+                            <Bar dataKey="numbers" fill="#0085F6" shape={<TriangleBar />} label={{ position: 'top' }} />
+                            <XAxis dataKey="name"></XAxis>
+                            <YAxis></YAxis>
+                        </BarChart>
+
+                </div>
+
             </div>
         </div>
     );
