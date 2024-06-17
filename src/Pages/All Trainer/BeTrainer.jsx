@@ -137,9 +137,9 @@ const BeTrainer = () => {
                         </div>
                         <div className="w-full space-y-1">
                             <div>
-                                <Label htmlFor="large-file-upload" value="Large file input" />
+                                <Label htmlFor="large-file-upload" value="Image" />
                             </div>
-                            <FileInput name="image" id="large-file-upload" sizing="lg" required/>
+                            <FileInput name="image" sizing="lg" required/>
                         </div>
                     </div>
 

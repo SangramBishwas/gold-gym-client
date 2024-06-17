@@ -21,11 +21,11 @@ const Balance = () => {
     const data = [
         {
             name: 'Subscribers',
-            numbers: subscribers.length
+            count: subscribers.length
         },
         {
             name: 'Member',
-            numbers: payments.length
+            count: payments.length
         }
     ]
 
@@ -107,10 +107,10 @@ const Balance = () => {
             <div className="my-10">
                 <DashboardTitle heading={'Subscribers VS Members'}></DashboardTitle>
 
-                <div className="flex lg:justify-center">
+                <div className="flex lg:justify-center py-5">
                         <BarChart className="w-full h-full" width={1080} height={480} data={data}>
                             <Tooltip />
-                            <Bar dataKey="numbers" fill="#0085F6" shape={<TriangleBar />} label={{ position: 'top' }} />
+                            <Bar dataKey="count" fill="#0088FE" shape={<TriangleBar />} label={{ position: 'top' }} />
                             <XAxis dataKey="name"></XAxis>
                             <YAxis></YAxis>
                         </BarChart>
