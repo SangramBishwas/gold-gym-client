@@ -1,17 +1,17 @@
 import { Button, FileInput, Label, TextInput } from "flowbite-react";
 import DashboardTitle from "../DashboardTitle";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useAxios from "../../Hooks/useAxios";
 const image_hosting_key = import.meta.env.VITE_img_hosting_key;
 const imageHostingAPI = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const AddClasses = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxios();
     const handleOnSubmit = async (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const photo = form.get('image');
         const imageFile = { image: photo };
-        const res = await axiosPublic.post(imageHostingAPI, imageFile, {
+        const res = await axiosSecure.post(imageHostingAPI, imageFile, {
             headers: {
                 "content-type": "multipart/form-data"
             }
@@ -27,7 +27,7 @@ const AddClasses = () => {
                 details: form.get('description'),
             }
             console.log(classe);
-            const res = await axiosPublic.post('/classes', classe);
+            const res = await axiosSecure.post('/classes', classe);
             console.log(res.data)
             if (res.data.insertedId) {
                 Swal.fire({

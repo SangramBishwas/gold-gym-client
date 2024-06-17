@@ -1,29 +1,29 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import DashboardTitle from "../DashboardTitle";
 import { Label, Table, Textarea } from "flowbite-react";
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import useAxios from "../../Hooks/useAxios";
 const AppliedTrainers = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxios();
     const [openModal, setOpenModal] = useState(false);
     const { data: requests = [], refetch } = useQuery({
         queryKey: ['requests'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/requests')
+            const res = await axiosSecure.get('/requests')
             return res.data
         }
     })
     const handleConfirmRequest = (email) => {
-        axiosPublic.post(`/request-confirm/${email}`)
+        axiosSecure.post(`/request-confirm/${email}`)
             .then(res => {
                 const result = res.data;
                 if (result.insertedId) {
-                    axiosPublic.patch(`/users&trainer/${email}`)
+                    axiosSecure.patch(`/users&trainer/${email}`)
                         .then(res => console.log(res.data))
-                    axiosPublic.delete(`/request/${email}`)
+                    axiosSecure.delete(`/request/${email}`)
                         .then(res => {
 
                             if (res.data.deletedCount > 0) {
@@ -36,7 +36,7 @@ const AppliedTrainers = () => {
             })
     }
     const handleDeleteRequest = (id) => {
-        axiosPublic.delete(`/request/${id}`)
+        axiosSecure.delete(`/request/${id}`)
         .then(res => {
             const result = res.data;
             if(result.deletedCount > 0){

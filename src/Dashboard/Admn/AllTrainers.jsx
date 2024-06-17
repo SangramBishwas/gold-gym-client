@@ -1,10 +1,10 @@
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useTrainers from "../../Hooks/useTrainers";
 import DashboardTitle from "../DashboardTitle";
 import { Card } from "flowbite-react";
+import useAxios from "../../Hooks/useAxios";
 const AllTrainers = () => {
-    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxios()
     const [trainer, refetch] = useTrainers();
     const handleDelete = (id) => {
         Swal.fire({
@@ -17,7 +17,7 @@ const AllTrainers = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosPublic.delete(`/trainers/${id}`)
+                axiosSecure.delete(`/trainers/${id}`)
                     .then(res => {
                         const result = res.data;
                         console.log(result)

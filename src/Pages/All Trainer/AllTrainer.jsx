@@ -4,7 +4,8 @@ import useTrainers from "../../Hooks/useTrainers";
 import { Link } from "react-router-dom";
 
 const AllTrainer = () => {
-    const [trainers] = useTrainers()
+    const [trainers] = useTrainers();
+    console.log(trainers)
     return (
         <div>
             <SectionTitle heading={"All Trainers"}

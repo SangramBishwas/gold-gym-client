@@ -1,18 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import DashboardTitle from "../DashboardTitle";
 import { Button, Modal, Table } from "flowbite-react";
 import { useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import useSubscriber from "../../Hooks/useSubscriber";
+import useAxios from "../../Hooks/useAxios";
 const Balance = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxios();
     const [subscribers] = useSubscriber()
     const [openModal, setOpenModal] = useState(false);
     const { data: payments = [] } = useQuery({
         queryKey: ['payments'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/payments');
+            const res = await axiosSecure.get('/payments');
             return res.data;
         }
     })
