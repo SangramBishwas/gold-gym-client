@@ -6,7 +6,7 @@ import useAxios from "../../Hooks/useAxios";
 const AllTrainers = () => {
     const axiosSecure = useAxios()
     const [trainer, refetch] = useTrainers();
-    const handleDelete = (id) => {
+    const handleDelete = (id, email) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -22,12 +22,20 @@ const AllTrainers = () => {
                         const result = res.data;
                         console.log(result)
                         if (result.deletedCount > 0) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success"
-                            });
-                            refetch();
+                            axiosSecure.patch(`/users&member/${email}`)
+                                .then(res => {
+                                    console.log(res.data)
+                                    if (res.data.modifiedCount > 0) {
+                                        refetch();
+                                        Swal.fire({
+                                            title: "Deleted!",
+                                            text: "Your file has been deleted.",
+                                            icon: "success"
+                                        });
+
+                                    }
+                                })
+
                         }
                     })
             }
@@ -52,7 +60,7 @@ const AllTrainers = () => {
                                 {
                                     trainee?.skills.map((skill, index) => <span key={index} className="text-sm text-gray-500 dark:text-gray-400">{skill}</span>)
                                 }
-                                
+
                             </div>
 
                             <div className="mt-4 flex space-x-3 lg:mt-6">
@@ -62,7 +70,7 @@ const AllTrainers = () => {
                                 >
                                     Message
                                 </a>
-                                <button onClick={() => handleDelete(trainee._id)}
+                                <button onClick={() => handleDelete(trainee._id, trainee.email)}
                                     href="#"
                                     className="inline-flex items-center rounded-lg bg-cyan-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
                                 >

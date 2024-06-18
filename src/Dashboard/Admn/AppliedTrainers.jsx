@@ -3,7 +3,6 @@ import DashboardTitle from "../DashboardTitle";
 import { Label, Table, Textarea } from "flowbite-react";
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
-import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxios";
 const AppliedTrainers = () => {
@@ -16,41 +15,52 @@ const AppliedTrainers = () => {
             return res.data
         }
     })
-    const handleConfirmRequest = (email) => {
+    const handleConfirmRequest = (email, id) => {
         axiosSecure.post(`/request-confirm/${email}`)
             .then(res => {
                 const result = res.data;
                 if (result.insertedId) {
                     axiosSecure.patch(`/users&trainer/${email}`)
-                        .then(res => console.log(res.data))
-                    axiosSecure.delete(`/request/${email}`)
                         .then(res => {
-                            refetch();
-                            if (res.data.deletedCount > 0) {
-                                toast('Confirmed Successfully')
+                            console.log(res.data)
+                            if (res.data.modifiedCount > 0) {
+                                axiosSecure.delete(`/request/${id}`)
+                                    .then(res => {
+                                        const result = res.data;
+                                        if (result.deletedCount > 0) {
+                                            setOpenModal(false);
+                                            Swal.fire({
+                                                position: "center",
+                                                icon: "success",
+                                                title: `Request has been accepted`,
+                                                showConfirmButton: false,
+                                                timer: 3000
+                                            });
+                                        }
+                                        refetch();
+                                    })
                             }
                         })
-
                 }
-                
+
             })
     }
     const handleDeleteRequest = (id) => {
         axiosSecure.delete(`/request/${id}`)
-        .then(res => {
-            const result = res.data;
-            if(result.deletedCount > 0){
-                setOpenModal(false);
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: `Your request has been sent`,
-                    showConfirmButton: false,
-                    timer: 2500
-                });
-            }
-            refetch();
-        })
+            .then(res => {
+                const result = res.data;
+                if (result.deletedCount > 0) {
+                    setOpenModal(false);
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: `Request has been deleted`,
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
+                refetch();
+            })
     }
     return (
         <div>
@@ -78,7 +88,7 @@ const AppliedTrainers = () => {
                                 <Table.Cell>{request.age}</Table.Cell>
                                 <Table.Cell>{request.email}</Table.Cell>
                                 <Table.Cell className="flex flex-col md:flex-row gap-3 md:gap-5">
-                                    <button onClick={() => handleConfirmRequest(request.email)} className="font-medium text-cyan-600 hover:underline hover:cursor-pointer dark:text-cyan-500">
+                                    <button onClick={() => handleConfirmRequest(request.email, request._id)} className="font-medium text-cyan-600 hover:underline hover:cursor-pointer dark:text-cyan-500">
                                         Confirm
                                     </button>
                                     <button onClick={() => setOpenModal(true)} className="font-medium text-cyan-600 hover:underline hover:cursor-pointer dark:text-cyan-500">

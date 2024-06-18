@@ -2,7 +2,7 @@ import useSubscriber from "../../Hooks/useSubscriber";
 import DashboardTitle from "../DashboardTitle";
 import { Table } from "flowbite-react";
 const AllSubscribers = () => {
-    const [subscribers] = useSubscriber()
+    const [subscribers] = useSubscriber();
     return (
         <div>
             <DashboardTitle heading={'All Subscribers'}></DashboardTitle>

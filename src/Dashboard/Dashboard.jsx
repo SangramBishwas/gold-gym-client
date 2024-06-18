@@ -7,7 +7,7 @@ import useAdmin from "../Hooks/useAdmin";
 import useTrainer from "../Hooks/useTrainer";
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
-    const [isTrainer] = useTrainer()
+    const [isTrainer] = useTrainer();
     return (
         <div className="m-5 md:m-10 lg:mx-20 flex flex-col lg:flex-row lg:gap-10">
             <Toaster
@@ -54,13 +54,14 @@ const Dashboard = () => {
                         </Sidebar.ItemGroup>
                     }
                     {
-                        isTrainer && <Sidebar.ItemGroup className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-1 items-center">
+                        isTrainer &&
+                        <Sidebar.ItemGroup className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-1 items-center">
                             <NavLink className="w-full" to="/">
                                 <Sidebar.Item icon={FaHome}>
                                     Home
                                 </Sidebar.Item>
                             </NavLink>
-                            <NavLink className="w-full" to="/manage&slots">
+                            <NavLink className="w-full" to="/dashboard/manage&slots">
                                 <Sidebar.Item icon={HiMenuAlt1}>
                                     Manage Slots
                                 </Sidebar.Item>

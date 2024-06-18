@@ -6,6 +6,7 @@ import useAuth from "../../Hooks/useAuth";
 import Select from 'react-select'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAxios from "../../Hooks/useAxios";
 const image_hosting_key = import.meta.env.VITE_img_hosting_key;
 const imageHostingAPI = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
@@ -14,13 +15,14 @@ const BeTrainer = () => {
     const [selectedDays, setSelectedDays] = useState([]);
     const [selectedTimes, setSelectedTimes] = useState([]);
     // const navigate = useNavigate()
-    const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxios();
     const Days = [
         { value: 'Sunday', label: 'Sunday' },
         { value: 'Monday', label: 'Monday' },
         { value: 'Tuesday', label: 'Tuesday' },
         { value: 'Wednesday', label: 'Wednesday' },
-        { value: 'Firday', label: 'Firday' }
+        { value: 'Thirsday', label: 'Thirsday' }
     ]
     const Times = [
         { value: '08:00am to 10:00am', label: '08:00am to 10:00am' },
@@ -65,7 +67,7 @@ const BeTrainer = () => {
                 description: form.get('description'),
             }
             console.log(request);
-            const res = await axiosPublic.post('/requests', request);
+            const res = await axiosSecure.post('/requests', request);
             console.log(res.data)
             if (res.data.insertedId) {
                 Swal.fire({

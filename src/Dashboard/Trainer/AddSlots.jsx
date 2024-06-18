@@ -1,26 +1,29 @@
 import Select from 'react-select'
-import useAuth from "../../Hooks/useAuth";
-import useTrainers from "../../Hooks/useTrainers";
+// import useAuth from "../../Hooks/useAuth";
+// import useTrainers from "../../Hooks/useTrainers";
 import { useState } from 'react';
 import DashboardTitle from '../DashboardTitle';
 import useAxios from '../../Hooks/useAxios';
 import Swal from 'sweetalert2';
+import useTrainerApi from '../../Hooks/useTrainerApi';
 
 const AddSlots = () => {
     const [selectedDays, setSelectedDays] = useState([]);
     const [selectedTimes, setSelectedTimes] = useState([]);
     const axiosSecure = useAxios();
-    const [trainers] = useTrainers();
-    const { user } = useAuth();
-    const trainer = trainers.find(trainee => trainee.email === user?.email);
+    const [trainer] = useTrainerApi();
+    console.log(trainer)
+    // const [trainers] = useTrainers();
+    // const { user } = useAuth();
+    // const trainer = trainers.find(trainee => trainee.email === user?.email);
     const Days = [
         { value: 'Sunday', label: 'Sunday' },
         { value: 'Monday', label: 'Monday' },
         { value: 'Tuesday', label: 'Tuesday' },
         { value: 'Wednesday', label: 'Wednesday' },
-        { value: 'Firday', label: 'Firday' }
+        { value: 'Thirsday', label: 'Thirsday' }
     ]
-    
+
     const Times = [
         { value: '08:00am to 10:00am', label: '08:00am to 10:00am' },
         { value: '09:00am to 11:00am', label: '09:00am to 11:00am' },
@@ -47,7 +50,7 @@ const AddSlots = () => {
         };
         console.log(updateSlots)
         const res = await axiosSecure.put(`/trainers/${trainer?.email}`, updateSlots)
-        if(res.data.modifiedCount > 0){
+        if (res.data.modifiedCount > 0) {
             Swal.fire({
                 position: "center",
                 icon: "success",
@@ -97,7 +100,7 @@ const AddSlots = () => {
                         <div className="relative z-10 w-full mb-5 group">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Available Times(any 3 times)</label>
                             <Select
-                            onChange={handleSelectedTimes}
+                                onChange={handleSelectedTimes}
                                 isMulti
                                 name="times"
                                 options={Times}
@@ -107,7 +110,7 @@ const AddSlots = () => {
 
                     <div className="mb-5 w-full">
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bio Data</label>
-                        <input type="text" name="description" id="large-input" className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" defaultValue={trainer?.description} readOnly/>
+                        <input type="text" name="description" id="large-input" className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" defaultValue={trainer?.description} readOnly />
                     </div>
 
                     <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-10">Send Request</button>
