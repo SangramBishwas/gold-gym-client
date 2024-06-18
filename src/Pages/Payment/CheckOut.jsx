@@ -1,30 +1,30 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useEffect, useState } from 'react';
-import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import useAuth from '../../Hooks/useAuth';
 import PropTypes from 'prop-types';
 import { Button } from 'flowbite-react';
 import Swal from 'sweetalert2';
+import useAxios from '../../Hooks/useAxios';
 const CheckOut = ({ paymentInfo }) => {
     const [error, setError] = useState('');
     const [transaction, setTransaction] = useState('');
     const [clientSecret, setClientSecret] = useState('')
     const stripe = useStripe();
-    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxios()
     const elements = useElements();
     const { user } = useAuth();
     const { boookingInfo, pacckage, payment } = paymentInfo;
-    console.log(boookingInfo, user.email, pacckage, payment,);
+
 
     useEffect(() => {
         if (payment > 0) {
-            axiosPublic.post('/create-payment-intent', { price: payment })
+            axiosSecure.post('/create-payment-intent', { price: payment })
                 .then(res => {
                     console.log(res.data.clientSecret);
                     setClientSecret(res.data.clientSecret);
                 })
         }
-    }, [axiosPublic, payment])
+    }, [axiosSecure, payment])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -62,7 +62,6 @@ const CheckOut = ({ paymentInfo }) => {
         if (confirmError) {
             console.log('confirmError', confirmError)
         } else {
-            console.log('paymentIntent', paymentIntent)
             if (paymentIntent.status === 'succeeded') {
                 setTransaction(paymentIntent.id);
                 const paymentInfo = {
@@ -77,13 +76,11 @@ const CheckOut = ({ paymentInfo }) => {
                     date: new Date(),
                     status: true
                 }
-                const res = await axiosPublic.post('/payments', paymentInfo)
-                console.log('payment saved', res.data)
+                const res = await axiosSecure.post('/payments', paymentInfo)
                 if (res.data.insertedId) {
-                    axiosPublic.patch(`/users/${user?.email}`)
+                    axiosSecure.patch(`/users/${user?.email}`)
                     .then(res => {
                         const result = res.data;
-                        console.log(result);
                         if (result.modifiedCount > 0) {
                             Swal.fire({
                                 position: "center",

@@ -25,14 +25,14 @@ const AppliedTrainers = () => {
                         .then(res => console.log(res.data))
                     axiosSecure.delete(`/request/${email}`)
                         .then(res => {
-
+                            refetch();
                             if (res.data.deletedCount > 0) {
-                                refetch();
+                                toast('Confirmed Successfully')
                             }
                         })
 
                 }
-                toast('Confirmed Successfully')
+                
             })
     }
     const handleDeleteRequest = (id) => {
