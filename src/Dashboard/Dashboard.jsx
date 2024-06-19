@@ -7,7 +7,8 @@ import useAdmin from "../Hooks/useAdmin";
 import useTrainer from "../Hooks/useTrainer";
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
-    const [isTrainer] = useTrainer();
+    const [isTrainer, user] = useTrainer();
+    console.log(user)
     return (
         <div className="m-5 md:m-10 lg:mx-20 flex flex-col lg:flex-row lg:gap-10">
             <Toaster
@@ -71,7 +72,7 @@ const Dashboard = () => {
                                     Add Slots
                                 </Sidebar.Item>
                             </NavLink>
-                            <NavLink to="/dashboard/add&post5" >
+                            <NavLink to="/dashboard/add&post" >
                                 <Sidebar.Item icon={HiUsers}>
                                     Add Post
                                 </Sidebar.Item>

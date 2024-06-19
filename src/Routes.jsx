@@ -20,6 +20,7 @@ import Balance from "./Dashboard/Admn/Balance";
 import AddClasses from "./Dashboard/Admn/AddClasses";
 import AddSlots from "./Dashboard/Trainer/AddSlots";
 import ManageSlots from "./Dashboard/Trainer/ManageSlots";
+import AddPost from "./Dashboard/AddPost";
 
 export const router = createBrowserRouter([
     {
@@ -99,6 +100,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/manage&slots',
                 element: <ManageSlots></ManageSlots>,
+            },
+            {
+                path: '/dashboard/add&post',
+                element: <AddPost></AddPost>,
             },
         ]
         
