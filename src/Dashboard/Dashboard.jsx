@@ -68,7 +68,7 @@ const Dashboard = () => {
                             </NavLink>
                             <NavLink to="/dashboard/new&slots">
                                 <Sidebar.Item icon={FaSubscript}>
-                                    Add New Slots
+                                    Add Slots
                                 </Sidebar.Item>
                             </NavLink>
                             <NavLink to="/dashboard/add&post5" >

@@ -3,11 +3,21 @@ import { Label, Table, Textarea } from "flowbite-react";
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import useTrainerApi from "../../Hooks/useTrainerApi";
+import useAxios from "../../Hooks/useAxios";
 
 const ManageSlots = () => {
     const [openModal, setOpenModal] = useState(false);
     const [trainer] = useTrainerApi();
-    console.log(trainer.available_times)
+    const axiosSecure = useAxios()
+    const handleDeleteSlot = (id, time) => {
+        const timeValue = {
+            slot: time
+        }
+        axiosSecure.patch(`/trainer&slot/${id}`, timeValue)
+        .then(res => {
+            console.log(res.data)
+        })
+    }
     return (
         <div>
             <DashboardTitle heading={'Manage Your Slots'}></DashboardTitle>
@@ -33,12 +43,12 @@ const ManageSlots = () => {
                                 </Table.Cell>
                                 <Table.Cell>{slot}</Table.Cell>
                                 <Table.Cell>
-                                    <button className="font-medium text-cyan-600 hover:underline hover:cursor-pointer dark:text-cyan-500">
+                                    <button onClick={() => setOpenModal(true)} className="font-medium text-cyan-600 hover:underline hover:cursor-pointer dark:text-cyan-500">
                                         More Info
                                     </button>
                                 </Table.Cell>
                                 <Table.Cell>
-                                    <button onClick={() => setOpenModal(true)} className="font-medium text-cyan-600 hover:underline hover:cursor-pointer dark:text-cyan-500">
+                                    <button onClick={() => handleDeleteSlot(trainer._id, slot)} className="font-medium text-cyan-600 hover:underline hover:cursor-pointer dark:text-cyan-500">
                                         Delete
                                     </button>
 
