@@ -52,35 +52,61 @@ const Dashboard = () => {
                                     Add Classes
                                 </Sidebar.Item>
                             </NavLink>
-                        </Sidebar.ItemGroup>
-                    }
-                    {
-                        isTrainer &&
-                        <Sidebar.ItemGroup className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-1 items-center">
-                            <NavLink className="w-full" to="/">
-                                <Sidebar.Item icon={FaHome}>
-                                    Home
-                                </Sidebar.Item>
-                            </NavLink>
-                            <NavLink className="w-full" to="/dashboard/manage&slots">
-                                <Sidebar.Item icon={HiMenuAlt1}>
-                                    Manage Slots
-                                </Sidebar.Item>
-                            </NavLink>
-                            <NavLink to="/dashboard/new&slots">
-                                <Sidebar.Item icon={FaSubscript}>
-                                    Add Slots
-                                </Sidebar.Item>
-                            </NavLink>
                             <NavLink to="/dashboard/add&post" >
                                 <Sidebar.Item icon={HiUsers}>
                                     Add Post
                                 </Sidebar.Item>
                             </NavLink>
                         </Sidebar.ItemGroup>
-
-
                     }
+                    {
+                        isTrainer ?
+                            <Sidebar.ItemGroup className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-1 items-center">
+                                <NavLink className="w-full" to="/">
+                                    <Sidebar.Item icon={FaHome}>
+                                        Home
+                                    </Sidebar.Item>
+                                </NavLink>
+                                <NavLink className="w-full" to="/dashboard/manage&slots">
+                                    <Sidebar.Item icon={HiMenuAlt1}>
+                                        Manage Slots
+                                    </Sidebar.Item>
+                                </NavLink>
+                                <NavLink to="/dashboard/new&slots">
+                                    <Sidebar.Item icon={FaSubscript}>
+                                        Add Slots
+                                    </Sidebar.Item>
+                                </NavLink>
+                                <NavLink to="/dashboard/add&post" >
+                                    <Sidebar.Item icon={HiUsers}>
+                                        Add Post
+                                    </Sidebar.Item>
+                                </NavLink>
+                            </Sidebar.ItemGroup>
+                            : <Sidebar.ItemGroup>
+                                <NavLink className="w-full" to="/">
+                                    <Sidebar.Item icon={FaHome}>
+                                        Home
+                                    </Sidebar.Item>
+                                </NavLink>
+                                <NavLink className="w-full" to="/dashboard/profile">
+                                    <Sidebar.Item icon={HiMenuAlt1}>
+                                        Profile
+                                    </Sidebar.Item>
+                                </NavLink>
+                                <NavLink to="/dashboard/booked&trainer">
+                                    <Sidebar.Item icon={FaSubscript}>
+                                        Booked Trainer
+                                    </Sidebar.Item>
+                                </NavLink>
+                                <NavLink to="/dashboard/activity&log" >
+                                    <Sidebar.Item icon={HiUsers}>
+                                        Activity Log
+                                    </Sidebar.Item>
+                                </NavLink>
+                            </Sidebar.ItemGroup>
+                    }
+
 
                 </Sidebar.Items>
             </Sidebar>

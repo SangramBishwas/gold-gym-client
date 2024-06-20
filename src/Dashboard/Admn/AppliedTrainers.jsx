@@ -5,7 +5,9 @@ import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxios";
+import toast from "react-hot-toast";
 const AppliedTrainers = () => {
+    const [trainerEmail, setTrainerEmail] = useState(null)
     const axiosSecure = useAxios();
     const [openModal, setOpenModal] = useState(false);
     const { data: requests = [], refetch } = useQuery({
@@ -45,21 +47,37 @@ const AppliedTrainers = () => {
 
             })
     }
-    const handleDeleteRequest = (id) => {
+    const handleDeleteRequest = (id, email) => {
+        setTrainerEmail(email)
+        setOpenModal(true)
         axiosSecure.delete(`/request/${id}`)
             .then(res => {
                 const result = res.data;
                 if (result.deletedCount > 0) {
-                    setOpenModal(false);
+                    toast('Request has been deleted')
+                }
+                refetch();
+            })
+    }
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+        const form = new FormData(e.currentTarget);
+        const feedback = {
+            email: trainerEmail,
+            message: form.get('feedback')
+        }
+        axiosSecure.post('/feedback', feedback)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.insertedId) {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: `Request has been deleted`,
+                        title: `Your feedback has been sent`,
                         showConfirmButton: false,
-                        timer: 2500
+                        timer: 3000
                     });
                 }
-                refetch();
             })
     }
     return (
@@ -91,10 +109,9 @@ const AppliedTrainers = () => {
                                     <button onClick={() => handleConfirmRequest(request.email, request._id)} className="font-medium text-cyan-600 hover:underline hover:cursor-pointer dark:text-cyan-500">
                                         Confirm
                                     </button>
-                                    <button onClick={() => setOpenModal(true)} className="font-medium text-cyan-600 hover:underline hover:cursor-pointer dark:text-cyan-500">
+                                    <button onClick={() => handleDeleteRequest(request._id, request.email)} className="font-medium text-cyan-600 hover:underline hover:cursor-pointer dark:text-cyan-500">
                                         Reject
                                     </button>
-
                                 </Table.Cell>
                                 <Modal show={openModal} onClose={() => setOpenModal(false)}>
                                     <Modal.Header>Details Of {request.name}</Modal.Header>
@@ -113,12 +130,15 @@ const AppliedTrainers = () => {
                                             <div className="mx-auto block">
                                                 <Label htmlFor="comment" value="Your Feedback" />
                                             </div>
-                                            <Textarea id="comment" placeholder="Leave a comment..." required rows={4} />
+
                                         </div>
+                                        <form onSubmit={handleOnSubmit}>
+                                            <Textarea id="comment"
+                                                name="feedback"
+                                                placeholder="Give a feedback..." required rows={4} />
+                                            <Button className="mx-auto" type="submit">Send</Button>
+                                        </form>
                                     </Modal.Body>
-                                    <Modal.Footer className="mx-auto">
-                                        <Button onClick={() => handleDeleteRequest(request._id)}>Send</Button>
-                                    </Modal.Footer>
                                 </Modal>
                             </Table.Row>)
                         }

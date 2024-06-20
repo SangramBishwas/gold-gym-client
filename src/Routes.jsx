@@ -21,6 +21,7 @@ import AddClasses from "./Dashboard/Admn/AddClasses";
 import AddSlots from "./Dashboard/Trainer/AddSlots";
 import ManageSlots from "./Dashboard/Trainer/ManageSlots";
 import AddPost from "./Dashboard/AddPost";
+import ActivityLog from "./Dashboard/ActivityLog";
 
 export const router = createBrowserRouter([
     {
@@ -104,6 +105,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/add&post',
                 element: <AddPost></AddPost>,
+            },
+            {
+                path: '/dashboard/activity&log',
+                element: <ActivityLog></ActivityLog>,
             },
         ]
         

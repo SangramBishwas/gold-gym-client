@@ -4,7 +4,7 @@ import useAxios from "./useAxios";
 
 const useTrainer = () => {
     const {user} = useAuth();
-    const axiosSecure = useAxios()
+    const axiosSecure = useAxios();
     const {data: isTrainer} = useQuery({
         queryKey: [user?.email, 'isTrainer'],
         queryFn: async () => {
