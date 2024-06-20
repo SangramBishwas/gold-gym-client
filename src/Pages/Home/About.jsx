@@ -9,22 +9,22 @@ const About = () => {
                 <div className="flex gap-10">
                     <div>
                         <div className="border-t-2 border-lime-300 py-3 space-y-3">
-                            <h4 className="text-xl font-bold">50+ Exprience</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <h4 className="text-xl font-bold">500+ positive review</h4>
+                            <p>If you want to see top review. please scroll down to the review sections</p>
                         </div>
                         <div className="border-t-2 border-lime-300 py-3 space-y-3">
-                            <h4 className="text-xl font-bold">50+ Exprience</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                            <h4 className="text-xl font-bold">100+ Exprience Trainers</h4>
+                            <p>We have 100+ exprience trainer. They are highly capable to take your fitness at the highest level.</p>
                         </div>
                     </div>
                     <div>
                         <div className="border-t-2 border-lime-300 py-3 space-y-3">
-                            <h4 className="text-xl font-bold">50+ Exprience</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <h4 className="text-xl font-bold">1500+ Member</h4>
+                            <p>We have more than 1500 regular members who are making us beneficial.</p>
                         </div>
                         <div className="border-t-2 border-lime-300 py-3 space-y-3">
-                            <h4 className="text-xl font-bold">50+ Exprience</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                            <h4 className="text-xl font-bold">25+ Regular Classes</h4>
+                            <p>We are providing 25+ regular classes. If you take your paid membership. You can select this claases with specific trainer. </p>
                         </div>
                     </div>
                 </div>

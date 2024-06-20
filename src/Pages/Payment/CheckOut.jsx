@@ -71,6 +71,7 @@ const CheckOut = ({ paymentInfo }) => {
                     package: pacckage,
                     price: payment,
                     trainerName: boookingInfo.name,
+                    trainerId: boookingInfo.trainer_Id,
                     classes: boookingInfo.classes,
                     slot: boookingInfo.selectedSlot,
                     date: new Date(),

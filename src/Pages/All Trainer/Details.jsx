@@ -58,6 +58,7 @@ const Details = () => {
                     {selectedSlot &&
                         <Link to='/booked&trainer' state={{
                             name: `${trainer.name}`,
+                            trainer_Id: `${trainer._id}`,
                             selectedSlot: selectedSlot,
                             classes: `${trainer.available_days}`,
                         }}> <Button className="mx-auto w-1/2 my-3" gradientDuoTone="greenToBlue">Book Now</Button></Link>

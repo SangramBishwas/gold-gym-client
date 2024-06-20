@@ -32,32 +32,53 @@ const ActivityLog = () => {
             <div className="overflow-x-auto">
                 <Table hoverable>
                     <Table.Head>
-                        <Table.HeadCell>Name</Table.HeadCell>
-                        <Table.HeadCell>Age</Table.HeadCell>
-                        <Table.HeadCell className="p-4">
-                            Exprience
-                        </Table.HeadCell>
-                        <Table.HeadCell>Email</Table.HeadCell>
+                        {request && <>
+                            <Table.HeadCell>Name</Table.HeadCell>
+                            <Table.HeadCell>Age</Table.HeadCell>
+                            <Table.HeadCell className="p-4">
+                                Exprience
+                            </Table.HeadCell>
+                            <Table.HeadCell>Email</Table.HeadCell>
+                        </>
+                        }
+                        {feedback && <>
+                            <Table.HeadCell>Name</Table.HeadCell>
+                            <Table.HeadCell>Email</Table.HeadCell>
+                        </>
+                        }
                         <Table.HeadCell>Action</Table.HeadCell>
 
                     </Table.Head>
                     <Table.Body className="divide-y">
                         <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {request.name}
-                            </Table.Cell>
-                            <Table.Cell>{request.age}</Table.Cell>
-                            <Table.Cell>{request.exprience} years</Table.Cell>
-                            <Table.Cell>{request.email}</Table.Cell>
+                            {request && <>
+                                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                    {request.name}
+                                </Table.Cell>
+                                <Table.Cell>{request.age}</Table.Cell>
+                                <Table.Cell>{request.exprience} years</Table.Cell>
+                                <Table.Cell>{request.email}</Table.Cell>
+
+                            </>}
+                            {feedback &&
+                                <>
+                                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                        {user?.displayName}
+                                    </Table.Cell>
+                                    <Table.Cell>{user?.email}</Table.Cell>
+                                </>
+
+                            }
                             <Table.Cell className="flex flex-col md:flex-row gap-3 md:gap-5 space-x-1">
                                 {!feedback ? <span className="bg-black text-white text-base py-1 px-2 rounded">Pending</span>
-                                    : <div className="flex gap-3 items-center">
-                                        <span className="bg-red-700 text-white text-base py-1 px-2 rounded">Rejected</span>
-                                        <Tooltip id="my-tooltip" />
+                                    : <div className="flex gap-5 items-center">
                                         <span onClick={() => setOpenModal(true)}
                                             data-tooltip-id="my-tooltip"
                                             data-tooltip-content="feedback"
                                             data-tooltip-place="top" className="cursor-pointer"><FaEyeSlash className="text-3xl" /></span>
+                                        <span className="bg-red-700 text-white text-base py-1 px-2 rounded">Rejected</span>
+                                        <Tooltip id="my-tooltip" />
+
                                     </div>
                                 }
 

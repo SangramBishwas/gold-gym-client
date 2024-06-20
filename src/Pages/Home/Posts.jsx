@@ -33,7 +33,7 @@ const Posts = () => {
                                 <span className="text-sm text-gray-500 dark:text-gray-400">{post.role}</span>
                             </div>
                             <div className="pt-10 flex space-x-3 lg:mt-6">
-                                <p className="">{post.description}</p>
+                                <p className="">{post.post}</p>
                             </div>
                         </div>
                     </Card>)

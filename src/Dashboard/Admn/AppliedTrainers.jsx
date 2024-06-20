@@ -77,6 +77,7 @@ const AppliedTrainers = () => {
                         showConfirmButton: false,
                         timer: 3000
                     });
+                    setOpenModal(false)
                 }
             })
     }
@@ -136,7 +137,7 @@ const AppliedTrainers = () => {
                                             <Textarea id="comment"
                                                 name="feedback"
                                                 placeholder="Give a feedback..." required rows={4} />
-                                            <Button className="mx-auto" type="submit">Send</Button>
+                                            <Button className="my-5 mx-auto" type="submit">Send</Button>
                                         </form>
                                     </Modal.Body>
                                 </Modal>
