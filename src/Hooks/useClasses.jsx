@@ -3,7 +3,7 @@ import useAxiosPublic from "./useAxiosPublic";
 
 const useClasses = () => {
     const axiosPublic = useAxiosPublic();
-    const {data: classes = []} = useQuery({
+    const { data: classes = [] } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
             const res = await axiosPublic.get('/classes');
