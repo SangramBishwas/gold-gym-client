@@ -22,6 +22,7 @@ import AddSlots from "./Dashboard/Trainer/AddSlots";
 import ManageSlots from "./Dashboard/Trainer/ManageSlots";
 import AddPost from "./Dashboard/AddPost";
 import ActivityLog from "./Dashboard/ActivityLog";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -42,11 +43,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/be&trainer',
-                element: <BeTrainer></BeTrainer>
+                element: <PrivateRoute><BeTrainer></BeTrainer></PrivateRoute>
             },
             {
                 path: '/booked&trainer',
-                element: <TrainerBooked></TrainerBooked>
+                element: <PrivateRoute><TrainerBooked></TrainerBooked></PrivateRoute>
             },
             {
                 path: '/all&classes',
@@ -66,17 +67,17 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/payment',
-                element: <Payment></Payment>
+                element: <PrivateRoute><Payment></Payment></PrivateRoute>
             },
         ]
     },
     {
         path: '/dashboard',
-        element:<Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: '/dashboard/subscribers',
-                element:<AllSubscribers></AllSubscribers>
+                element: <AllSubscribers></AllSubscribers>
             },
             {
                 path: '/dashboard/trainers',
@@ -111,6 +112,6 @@ export const router = createBrowserRouter([
                 element: <ActivityLog></ActivityLog>,
             },
         ]
-        
+
     }
 ]); 
