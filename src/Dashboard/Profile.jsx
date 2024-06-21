@@ -38,7 +38,7 @@ const Profile = () => {
     }
     return (
         <div className="my-5">
-            <Card className="bg-gray-100 max-w-sm mx-auto">
+            <Card className="bg-gray-100 max-w-sm mx-auto lg:mx-20">
                 <div className="flex flex-col space-y-3 items-center">
                     <img
                         alt="Bonnie image"
