@@ -23,6 +23,7 @@ import ManageSlots from "./Dashboard/Trainer/ManageSlots";
 import AddPost from "./Dashboard/AddPost";
 import ActivityLog from "./Dashboard/ActivityLog";
 import PrivateRoute from "./PrivateRoute";
+import Profile from "./Dashboard/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -106,6 +107,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/add&post',
                 element: <AddPost></AddPost>,
+            },
+            {
+                path: '/dashboard/profile',
+                element: <Profile></Profile>,
             },
             {
                 path: '/dashboard/activity&log',

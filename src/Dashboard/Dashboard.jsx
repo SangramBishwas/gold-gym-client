@@ -87,7 +87,33 @@ const Dashboard = () => {
                         </Sidebar.ItemGroup>
                     }
                     {
-                        users.role === "member" &&
+                        users.role === 'member' &&
+                        <Sidebar.ItemGroup>
+                            <NavLink className="w-full" to="/">
+                                <Sidebar.Item icon={FaHome}>
+                                    Home
+                                </Sidebar.Item>
+                            </NavLink>
+                            <NavLink className="w-full" to="/dashboard/profile">
+                                <Sidebar.Item icon={HiMenuAlt1}>
+                                    Profile
+                                </Sidebar.Item>
+                            </NavLink>
+                            <NavLink to="/dashboard/booked&trainer">
+                                <Sidebar.Item icon={FaSubscript}>
+                                    Booked Trainer
+                                </Sidebar.Item>
+                            </NavLink>
+                            <NavLink to="/dashboard/activity&log" >
+                                <Sidebar.Item icon={HiUsers}>
+                                    Activity Log
+                                </Sidebar.Item>
+                            </NavLink>
+                        </Sidebar.ItemGroup>
+                    }
+
+                    {
+                        !users.role &&
                         <Sidebar.ItemGroup>
                             <NavLink className="w-full" to="/">
                                 <Sidebar.Item icon={FaHome}>
