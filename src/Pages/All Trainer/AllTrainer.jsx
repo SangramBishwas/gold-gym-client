@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const AllTrainer = () => {
     const [trainers] = useTrainers();
-    console.log(trainers)
     return (
         <div>
             <SectionTitle heading={"All Trainers"}

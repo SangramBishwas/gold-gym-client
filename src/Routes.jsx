@@ -24,6 +24,7 @@ import AddPost from "./Dashboard/AddPost";
 import ActivityLog from "./Dashboard/ActivityLog";
 import PrivateRoute from "./PrivateRoute";
 import Profile from "./Dashboard/Profile";
+import BookedTrainer from "./Dashboard/BookedTrainer";
 
 export const router = createBrowserRouter([
     {
@@ -111,6 +112,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/profile',
                 element: <Profile></Profile>,
+            },
+            {
+                path: '/dashboard/booked&trainer',
+                element: <BookedTrainer></BookedTrainer>,
             },
             {
                 path: '/dashboard/activity&log',

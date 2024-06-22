@@ -8,8 +8,7 @@ import { useState } from "react";
 
 const Details = () => {
     const axiosPublic = useAxiosPublic();
-    const [selectedSlot, setSelectedSlot] = useState(null)
-    // const navigate = useNavigate()
+    const [selectedSlot, setSelectedSlot] = useState(null);
     const { id } = useParams();
     const { data: trainer = [] } = useQuery({
         queryKey: ['trainer'],
@@ -19,9 +18,7 @@ const Details = () => {
         }
     })
     const slots = trainer.available_times;
-    console.log(slots)
     const handleSelectSlot = (slot) => {
-        console.log(slot)
         setSelectedSlot(slot);
     };
     return (

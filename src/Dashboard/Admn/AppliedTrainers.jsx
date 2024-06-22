@@ -92,6 +92,7 @@ const AppliedTrainers = () => {
                         </Table.HeadCell>
                         <Table.HeadCell>Name</Table.HeadCell>
                         <Table.HeadCell>Age</Table.HeadCell>
+                        <Table.HeadCell>Exprience</Table.HeadCell>
                         <Table.HeadCell>Email</Table.HeadCell>
                         <Table.HeadCell>Action</Table.HeadCell>
                     </Table.Head>
@@ -105,6 +106,7 @@ const AppliedTrainers = () => {
                                     {request.name}
                                 </Table.Cell>
                                 <Table.Cell>{request.age}</Table.Cell>
+                                <Table.Cell>{request.exprience}years</Table.Cell>
                                 <Table.Cell>{request.email}</Table.Cell>
                                 <Table.Cell className="flex flex-col md:flex-row gap-3 md:gap-5">
                                     <button onClick={() => handleConfirmRequest(request.email, request._id)} className="font-medium text-cyan-600 hover:underline hover:cursor-pointer dark:text-cyan-500">

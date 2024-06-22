@@ -10,7 +10,6 @@ const Dashboard = () => {
     const [users] = useUsers();
     const [isAdmin] = useAdmin();
     const [isTrainer] = useTrainer();
-    console.log(users);
     return (
         <div className="m-5 md:m-10 lg:mx-20 flex flex-col lg:flex-row lg:gap-10">
             <Toaster
@@ -23,12 +22,6 @@ const Dashboard = () => {
                     {
                         isAdmin &&
                         <Sidebar.ItemGroup className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-1 items-center">
-
-                            <NavLink className="w-full" to="/">
-                                <Sidebar.Item icon={FaHome}>
-                                    Home
-                                </Sidebar.Item>
-                            </NavLink>
                             <NavLink to="/dashboard/subscribers">
                                 <Sidebar.Item icon={FaSubscript}>
                                     All Subscribers
@@ -59,16 +52,16 @@ const Dashboard = () => {
                                     Add Post
                                 </Sidebar.Item>
                             </NavLink>
+                            <NavLink className="w-full border-t border-black" to="/">
+                                <Sidebar.Item icon={FaHome}>
+                                    Home
+                                </Sidebar.Item>
+                            </NavLink>
                         </Sidebar.ItemGroup>
                     }
                     {
                         isTrainer &&
                         <Sidebar.ItemGroup className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-1 items-center">
-                            <NavLink className="w-full" to="/">
-                                <Sidebar.Item icon={FaHome}>
-                                    Home
-                                </Sidebar.Item>
-                            </NavLink>
                             <NavLink className="w-full" to="/dashboard/manage&slots">
                                 <Sidebar.Item icon={HiMenuAlt1}>
                                     Manage Slots
@@ -84,16 +77,16 @@ const Dashboard = () => {
                                     Add Post
                                 </Sidebar.Item>
                             </NavLink>
+                            <NavLink className="w-full border-t border-black" to="/">
+                                <Sidebar.Item icon={FaHome}>
+                                    Home
+                                </Sidebar.Item>
+                            </NavLink>
                         </Sidebar.ItemGroup>
                     }
                     {
                         users.role === 'member' &&
                         <Sidebar.ItemGroup>
-                            <NavLink className="w-full" to="/">
-                                <Sidebar.Item icon={FaHome}>
-                                    Home
-                                </Sidebar.Item>
-                            </NavLink>
                             <NavLink className="w-full" to="/dashboard/profile">
                                 <Sidebar.Item icon={HiMenuAlt1}>
                                     Profile
@@ -107,6 +100,11 @@ const Dashboard = () => {
                             <NavLink to="/dashboard/activity&log" >
                                 <Sidebar.Item icon={HiUsers}>
                                     Activity Log
+                                </Sidebar.Item>
+                            </NavLink>
+                            <NavLink className="w-full border-t border-black" to="/">
+                                <Sidebar.Item icon={FaHome}>
+                                    Home
                                 </Sidebar.Item>
                             </NavLink>
                         </Sidebar.ItemGroup>
@@ -115,11 +113,6 @@ const Dashboard = () => {
                     {
                         !users.role &&
                         <Sidebar.ItemGroup>
-                            <NavLink className="w-full" to="/">
-                                <Sidebar.Item icon={FaHome}>
-                                    Home
-                                </Sidebar.Item>
-                            </NavLink>
                             <NavLink className="w-full" to="/dashboard/profile">
                                 <Sidebar.Item icon={HiMenuAlt1}>
                                     Profile
@@ -133,6 +126,11 @@ const Dashboard = () => {
                             <NavLink to="/dashboard/activity&log" >
                                 <Sidebar.Item icon={HiUsers}>
                                     Activity Log
+                                </Sidebar.Item>
+                            </NavLink>
+                            <NavLink className="w-full border-t border-black" to="/">
+                                <Sidebar.Item icon={FaHome}>
+                                    Home
                                 </Sidebar.Item>
                             </NavLink>
                         </Sidebar.ItemGroup>

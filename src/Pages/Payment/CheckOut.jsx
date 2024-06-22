@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'flowbite-react';
 import Swal from 'sweetalert2';
 import useAxios from '../../Hooks/useAxios';
+import { useNavigate } from 'react-router-dom';
 const CheckOut = ({ paymentInfo }) => {
     const [error, setError] = useState('');
     const [transaction, setTransaction] = useState('');
@@ -13,8 +14,8 @@ const CheckOut = ({ paymentInfo }) => {
     const axiosSecure = useAxios()
     const elements = useElements();
     const { user } = useAuth();
+    const navigate = useNavigate()
     const { boookingInfo, pacckage, payment } = paymentInfo;
-
 
     useEffect(() => {
         if (payment > 0) {
@@ -90,6 +91,7 @@ const CheckOut = ({ paymentInfo }) => {
                                 showConfirmButton: false,
                                 timer: 1500
                             });
+                            navigate('/')
                         }
                     })
                 }

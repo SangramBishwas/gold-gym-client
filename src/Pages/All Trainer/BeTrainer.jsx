@@ -14,7 +14,7 @@ const BeTrainer = () => {
     const { user } = useAuth();
     const [selectedDays, setSelectedDays] = useState([]);
     const [selectedTimes, setSelectedTimes] = useState([]);
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxios();
     const Days = [
@@ -84,7 +84,7 @@ const BeTrainer = () => {
                     }
                     )
 
-                // navigate('/')
+                navigate('/')
             }
 
         }
