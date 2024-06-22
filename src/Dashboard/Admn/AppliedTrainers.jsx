@@ -24,7 +24,6 @@ const AppliedTrainers = () => {
                 if (result.insertedId) {
                     axiosSecure.patch(`/users&trainer/${email}`)
                         .then(res => {
-                            console.log(res.data)
                             if (res.data.modifiedCount > 0) {
                                 axiosSecure.delete(`/request/${id}`)
                                     .then(res => {
@@ -56,7 +55,6 @@ const AppliedTrainers = () => {
                 if (result.deletedCount > 0) {
                     toast('Request has been deleted')
                 }
-                refetch();
             })
     }
     const handleOnSubmit = (e) => {
@@ -66,9 +64,9 @@ const AppliedTrainers = () => {
             email: trainerEmail,
             message: form.get('feedback')
         }
+
         axiosSecure.post('/feedback', feedback)
             .then(res => {
-                console.log(res.data)
                 if (res.data.insertedId) {
                     Swal.fire({
                         position: "center",
@@ -77,7 +75,7 @@ const AppliedTrainers = () => {
                         showConfirmButton: false,
                         timer: 3000
                     });
-                    setOpenModal(false)
+                    refetch();
                 }
             })
     }

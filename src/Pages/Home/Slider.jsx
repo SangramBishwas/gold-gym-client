@@ -23,8 +23,8 @@ const Slider = () => {
                     <div className="relative w-full h-full">
                         <div className="w-full h-full py-12 lg:py-24 absolute text-center"><h2 className="text-white font-bold text-center text-2xl md:text-4xl lg:text-6xl">Book Now</h2>
                             <p className="text-white py-5">Welcome here, we are providing some interesting classes with our best trainer according to your choice </p>
-                            <Link to="/all&classes">
-                                <Button className="mx-auto">All Classes</Button>
+                            <Link to="/be&trainer">
+                                <Button className="mx-auto">Be A Trainer</Button>
                             </Link>
                         </div>
                         <img className="w-full h-full" src={slider2} alt="" />
@@ -34,8 +34,8 @@ const Slider = () => {
                     <div className="relative w-full h-full">
                         <div className="w-full h-full py-12 lg:py-24 absolute text-center"><h2 className="text-white font-bold text-center text-2xl md:text-4xl lg:text-6xl">Be A Trainer</h2>
                             <p className="text-white py-5">Welcome here, we are providing some interesting classes with our best trainer according to your choice </p>
-                            <Link to="/be&trainer">
-                                <Button className="mx-auto">Be A Trainer</Button>
+                            <Link to="/all&classes">
+                                <Button className="mx-auto">All Classes</Button>
                             </Link>
                         </div>
                         <img className="w-full h-full" src={slider1} alt="" />

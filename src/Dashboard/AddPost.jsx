@@ -15,12 +15,7 @@ const AddPost = () => {
             return res.data
         }
     })
-    // const today = new Date();
-    // const options = { day: '2-digit', month: '2-digit', year: '2-digit' };
 
-    // const formattedDate = today.toLocaleDateString('en-GB', options);
-
-    console.log(userInfo);
     const getFormattedDate = () => {
         const today = new Date();
         const options = { day: '2-digit', month: '2-digit', year: '2-digit' };
@@ -30,7 +25,6 @@ const AddPost = () => {
         return formattedDate;
     }
 
-    console.log(getFormattedDate())
     const handleOnSubmit = (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
@@ -42,10 +36,8 @@ const AddPost = () => {
             image: userInfo?.image
 
         }
-        console.log(newPost);
         axiosSecure.post('/getPost', newPost)
             .then(res => {
-                console.log(res.data);
                 if (res.data.insertedId) {
                     Swal.fire({
                         position: "center",
@@ -63,7 +55,6 @@ const AddPost = () => {
     return (
         <div>
             <DashboardTitle heading={'Add Your Post'}></DashboardTitle>
-            <p>{userInfo.role}</p>
             <form onSubmit={handleOnSubmit} className="w-full">
                 <div className="mx-auto w-full md:w-3/4 ">
                     <Textarea id="post" name="post" required rows={4} />

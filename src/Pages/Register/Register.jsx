@@ -18,10 +18,8 @@ const Register = () => {
 
     const Register = (data) => {
         const { email, password, name, image } = data;
-        console.log(name, email, password, image)
         creatUser(email, password)
             .then(() => {
-                // console.log(result.user)
                 updateUserProfile(name, image)
                     .then(() => {
                         const userInfo = {
@@ -32,9 +30,7 @@ const Register = () => {
                         axiosPublic.post('/users', userInfo)
                             .then(res => {
                                 const result = res.data;
-                                console.log(result)
                                 if (result.insertedId) {
-                                    console.log('User created successfully');
                                     Swal.fire({
                                         position: "top-end",
                                         icon: "success",

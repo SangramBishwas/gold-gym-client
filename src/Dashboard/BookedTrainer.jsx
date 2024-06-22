@@ -28,8 +28,6 @@ const BookedTrainer = () => {
         }
     })
 
-    console.log(trainer)
-
     const handleOnSubmit = (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);

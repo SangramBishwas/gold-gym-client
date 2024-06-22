@@ -24,7 +24,6 @@ const ActivityLog = () => {
             return res.data;
         }
     })
-    console.log(feedback)
     return (
         <div>
             <DashboardTitle heading={'Your Application for a trainer'}></DashboardTitle>

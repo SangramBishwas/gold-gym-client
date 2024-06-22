@@ -17,7 +17,6 @@ const Balance = () => {
         }
     })
     const totalPrice = payments.reduce((total, item) => total + item.price, 0);
-    console.log(totalPrice);
     const data = [
         {
             name: 'Subscribers',

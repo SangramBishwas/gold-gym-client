@@ -93,7 +93,6 @@ const AddSlots = () => {
             available_times: selectedTimes,
             classes: selectedOption
         };
-        console.log(updateSlots)
         const res = await axiosSecure.put(`/trainers/${trainer?.email}`, updateSlots)
         if (res.data.modifiedCount > 0) {
             Swal.fire({

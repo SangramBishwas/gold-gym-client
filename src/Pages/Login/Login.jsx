@@ -40,7 +40,6 @@ const Login = () => {
             axiosPublic.post('/users', userInfo)
                 .then(res => {
                     const result = res.data;
-                    console.log(result)
                     if (result.insertedId) {
                         Swal.fire({
                             position: "top-end",

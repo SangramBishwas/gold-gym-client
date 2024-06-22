@@ -52,8 +52,6 @@ const BeTrainer = () => {
         })
 
         const resData = res.data;
-        console.log(resData)
-
         if (res.data.success) {
             const request = {
                 name: user?.displayName,
@@ -66,9 +64,7 @@ const BeTrainer = () => {
                 exprience: form.get('exprience'),
                 description: form.get('description'),
             }
-            console.log(request);
             const res = await axiosSecure.post('/requests', request);
-            console.log(res.data)
             if (res.data.insertedId) {
                 axiosSecure.delete(`/feedback/${user?.email}`)
                     .then(res => {

@@ -17,7 +17,6 @@ const AllClasses = () => {
         const searchValue = e.target.search.value;
         setSearch(searchValue);
     }
-    console.log(classes)
     return (
         <div>
             <SectionTitle heading={'All Classes'} subHeading={'You can find all classes here and You can search by any class name'}></SectionTitle>

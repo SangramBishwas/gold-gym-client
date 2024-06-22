@@ -21,7 +21,6 @@ const CheckOut = ({ paymentInfo }) => {
         if (payment > 0) {
             axiosSecure.post('/create-payment-intent', { price: payment })
                 .then(res => {
-                    console.log(res.data.clientSecret);
                     setClientSecret(res.data.clientSecret);
                 })
         }

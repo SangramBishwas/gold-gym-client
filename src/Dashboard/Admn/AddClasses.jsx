@@ -18,7 +18,6 @@ const AddClasses = () => {
         })
 
         const resData = res.data;
-        console.log(resData)
         if (res.data.success) {
             const classe = {
                 class_name: form.get('name'),
@@ -26,9 +25,7 @@ const AddClasses = () => {
                 images: resData.data.display_url,
                 details: form.get('description'),
             }
-            console.log(classe);
             const res = await axiosSecure.post('/classes', classe);
-            console.log(res.data)
             if (res.data.insertedId) {
                 Swal.fire({
                     position: "center",

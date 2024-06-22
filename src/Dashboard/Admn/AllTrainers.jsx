@@ -20,11 +20,9 @@ const AllTrainers = () => {
                 axiosSecure.delete(`/trainers/${id}`)
                     .then(res => {
                         const result = res.data;
-                        console.log(result)
                         if (result.deletedCount > 0) {
                             axiosSecure.patch(`/users&member/${email}`)
                                 .then(res => {
-                                    console.log(res.data)
                                     if (res.data.modifiedCount > 0) {
                                         refetch();
                                         Swal.fire({
@@ -50,10 +48,8 @@ const AllTrainers = () => {
                         <div className="flex flex-col items-center pb-10">
                             <img
                                 alt={trainee.name}
-                                height="96"
                                 src={trainee.image}
-                                width="96"
-                                className="mb-3 rounded-full shadow-lg"
+                                className="mb-3  shadow-lg"
                             />
                             <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{trainee.name}</h5>
                             <div className="flex space-between">
